@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MenuProdukController extends Controller
 {
@@ -13,7 +15,12 @@ class MenuProdukController extends Controller
      */
     public function index()
     {
-        return view('menu_produk.index');
+        // $product = Product::with('products')->get();  
+        // return view('menu_produk.index', compact('products'));    
+        
+        $product = DB::table('products')->get();
+
+        return view('menu_produk.index', ['product' => $product]);
     }
 
     /**
@@ -23,7 +30,7 @@ class MenuProdukController extends Controller
      */
     public function create()
     {
-        //
+        return view('menu_produk.create');
     }
 
     /**
@@ -34,7 +41,20 @@ class MenuProdukController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validasi = Product::create([
+            'nama' => $request->nama,
+            'harga' => $request->harga,
+            'kadar_air' => $request->kadar_air,
+            'tekstur' => $request->tekstur,
+            'aroma' => $request->aroma,
+            'satuan' => $request->satuan,
+        ]);
+
+        if ($validasi) {
+            return redirect('menu-produk')->with('sukses', 'Anggota berhasil ditambahkan!');
+        } else {
+            return redirect('menu-produk')->with('error', 'Anggota gagal ditambahkan!');
+        }
     }
 
     /**
@@ -56,7 +76,8 @@ class MenuProdukController extends Controller
      */
     public function edit($id)
     {
-        //
+        $produk = Product::find($id);
+        return view('menu_produk.edit', ["produk" => $produk]);
     }
 
     /**
@@ -68,7 +89,20 @@ class MenuProdukController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validasi = Product::where('id', $id)->update([
+            'nama' => $request->nama,
+            'harga' => $request->harga,
+            'kadar_air' => $request->kadar_air,
+            'tekstur' => $request->tekstur,
+            'aroma' => $request->aroma,
+            'satuan' => $request->satuan,
+        ]);
+
+        if ($validasi) {
+            return redirect("/menu-produk")->with('sukses', 'User berhasil diedit!');
+        } else {
+            return redirect("/menu-produk")->with('error', 'User gagal diedit!');
+        }
     }
 
     /**
@@ -79,6 +113,12 @@ class MenuProdukController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $validasi = Product::where('id', $id)->delete();
+
+        if ($validasi) {
+            return redirect('menu-produk')->with('sukses', 'Data Produk berhasil dihapus!');
+        } else {
+            return redirect('menu-produk')->with('error', 'Data Produk gagal dihapus!');
+        }
     }
 }

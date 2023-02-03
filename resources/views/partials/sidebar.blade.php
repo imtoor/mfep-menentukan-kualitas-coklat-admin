@@ -11,7 +11,7 @@
             <!-- Main Sidebar Container -->
             <aside class="main-sidebar sidebar-dark-primary elevation-4">
                 <!-- Brand Logo -->
-                <a href="index3.html" class="brand-link">
+                <a href="#" class="brand-link">
                     <img
                         src="{{ asset('template/adminlte/dist/img/AdminLTELogo.png') }}"
                         alt="AdminLTE Logo"
@@ -48,7 +48,7 @@
                             <!-- Add icons to the links using the .nav-icon class
                             with font-awesome or any other icon font library -->
                             <li class="nav-item">
-                                <a id="dashboard" href="{{ url('/home') }}" class="nav-link">
+                                <a id="dashboard" href="{{ url('/') }}" class="nav-link">
                                     <i class="nav-icon fas fa-tachometer-alt"></i>
                                     <p>
                                         Dashboard
@@ -56,6 +56,15 @@
                                 </a>
                             </li>
                             
+                            <li class="nav-item">
+                                <a id="menu_userpelanggan" 
+                                    href="{{ url('/menu-userpelanggan') }}"
+                                    class="nav-link"
+                                >
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>User Pelanggan</p>
+                                </a>
+                            </li>
                             <li class="nav-item">
                                 <a id="menu_produk" 
                                     href="{{ url('/menu-produk') }}"

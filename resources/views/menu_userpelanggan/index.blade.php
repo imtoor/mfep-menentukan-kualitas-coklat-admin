@@ -1,8 +1,9 @@
 @extends('layouts.main')
 
 @section('title')
-Dashboard
+Menu User Pelanggan
 @endsection
+
 
 @section('myCss')
   <!-- DataTables -->
@@ -13,44 +14,49 @@ Dashboard
 
 @section('content')
 <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1 class="m-0">Produk</h1>
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item">
-                            <a href="#">Home</a>
-                        </li>
-                        <li class="breadcrumb-item active">
-                            Produk
-                        </li>
-                    </ol>
-                </div>
-                <!-- /.col -->
-            </div>
-            <!-- /.row -->
-        </div>
-        <!-- /.container-fluid -->
-    </div>
-    <!-- /.content-header -->
-    <!-- Main content -->
-    <section class="content">
+	<!-- Content Header (Page header) -->
+	<div class="content-header">
+		<div class="container-fluid">
+			<div class="row mb-2">
+				<div class="col-sm-6">
+					<h1 class="m-0">User Pelanggan</h1>
+				</div>
+				<!-- /.col -->
+				<div class="col-sm-6">
+					<ol class="breadcrumb float-sm-right">
+						<li class="breadcrumb-item">
+							<a href="#">Home</a>
+						</li>
+						<li class="breadcrumb-item active">
+						User Pelanggan
+						</li>
+					</ol>
+				</div>
+				<!-- /.col -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container-fluid -->
+	</div>
+	<!-- /.content-header -->
+	<!-- Main content -->
+	<section class="content">
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-12">
 					<div class="card">
 						<div class="card-header">
-							<a href="/menu-produk/create"><button class="btn btn-primary btn-sm"><i class="fa-icon fas fa-plus"></i> Tambah Data Produk</button></a>
+							<a href="/menu-userpelanggan/create"><button class="btn btn-primary btn-sm"><i class="fa-icon fas fa-plus"></i> Tambah Data User Pelanggan</button></a>
 						</div>
 						<!-- /.card-header -->
 						<div class="card-body">
 							@if ($message = Session::get('sukses'))
 								<div class="alert alert-success alert-block">
+								<button type="button" class="close" data-dismiss="alert">×</button>
+								<strong>{{ $message }}</strong>
+								</div>
+							@elseif($message = Session::get('error_email'))
+								<div class="alert alert-danger alert-block">
 								<button type="button" class="close" data-dismiss="alert">×</button>
 								<strong>{{ $message }}</strong>
 								</div>
@@ -60,40 +66,39 @@ Dashboard
 								<strong>{{ $message }}</strong>
 								</div>
 							@endif
-							<table id="data_table" class="table table-bordered table-striped">
+							<table id="data_userpelanggan" class="table table-bordered table-striped">
 							<thead>
 							<tr>
 								<th>No.</th>
-								<th>Nama</th>
-								<th>Harga</th>
-								<th>Kadar Air</th>
-								<th>Tekstur</th>
-								<th>Aroma</th>
-								<th>Satuan</th>
+								<th>Name</th>
+								<th>Email</th>
+								<th>Phone</th>
 								<th>Aksi</th>
 							</tr>
 							</thead>
 							<tbody>
-                                <?php $no = 1; ?>
-								@foreach($product as $data)
+								<?php $no = 1; ?>
+								@foreach($user as $data)
 								<tr>
 									<td><?= $no++ ?></td>
-									<td>{{ $data->nama }}</td>
-									<td>{{ $data->harga }}</td>
-									<td>{{ $data->kadar_air }}</td>
-									<td>{{ $data->tekstur }}</td>
-									<td>{{ $data->aroma }}</td>
-									<td>{{ $data->satuan }}</td>
+									<td>{{ $data->name }}</td> 
+									<td>{{ $data->email }}</td> 
+									<td>{{ $data->phone }}</td>
 									<td>
-										<a href="/menu-produk/{{ $data->id}}/edit" class="btn btn-sm btn-warning"><i class="fa-icon fas fa-pen"></i></a>
-										<button
-											class="btn btn-sm btn-danger" title="Hapus" 
-											onclick="confirm_del('{{ $data->nama }} ', '{{ route('menu-produk.destroy', $data->id) }}')">
-											<i class="fa-icon fas fa-trash"></i>
-										</button>
+									<button 
+										class="btn btn-sm btn-danger" title="Hapus" 
+										onclick="confirm_del('{{ $data->name }} ', '{{ route('menu-userpelanggan.destroy', $data->id) }}')">
+										<i class="fa-icon fas fa-trash"></i>
+									</button>
+										<a href="/menu-userpelanggan/{{ $data->id }}/edit" class="btn btn-sm btn-warning"><i class="fa-icon fas fa-pen"></i></a>
+									<button
+										class="btn btn-sm btn-primary" title="reset" 
+										onclick="confirm_resetpass('{{ $data->name }} ', '{{ url("password-reset/".$data->id) }}')">
+										<i class="fa-icon fas fa-key"></i>
+									</button>
 									</td>
 								</tr>
-                                @endforeach
+								@endforeach
 							</tbody>
 							</tfoot>
 							</table>
@@ -107,6 +112,12 @@ Dashboard
 		</div>
 		<!-- /.container-fluid -->
 	</section>
+	<form action="" method="POST" style="display:none" id="form_reset">
+		@method('PUT')
+		@csrf
+		<button class="btn btn-danger btn-sm" id='btn-reset' type="submit">
+		<i class="fa-icon fas fa-trash"></i></button>
+    </form>
 	<form action="" method="POST" style="display:none">
 		@method('DELETE')
 		@csrf
@@ -116,6 +127,7 @@ Dashboard
 	<!-- /.content -->
 </div>
 @endsection
+
 
 @section('myLib')
 	<!-- DataTables  & Plugins -->
@@ -134,18 +146,24 @@ Dashboard
 @endsection
 
 @section('myJs')
-    <script>
-        $('a#menu_produk').addClass('active');
+<script>
+        $('a#menu_userpelanggan').addClass('active');
 
-        $("table#data_table").DataTable({
+        $("table#data_userpelanggan").DataTable({
 	      "responsive": true, "lengthChange": true, "autoWidth": false,
 		  "lengthMenu": [[5, 10, 25, 50, 100, -1], [5, 10, 25, 50, 100, "Semua"]],
 	      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-	    }).buttons().container().appendTo('#data_table_wrapper .col-md-6:eq(0)');
+	    }).buttons().container().appendTo('#data_userpelanggan_wrapper .col-md-6:eq(0)');
 
-		function confirm_del(nama, route) {
-			if(!confirm('Anda yakin akan menghapus data '+ nama +'?')) return false;
-             $("form").attr("action", route);
+		function confirm_resetpass(name, route) {
+			if(!confirm('Reset password '+ name + 'dengan password default ?')) return false;
+             $("form#form_reset").attr("action", route);
+             $("button#btn-reset").trigger("click");
+		}
+
+		function confirm_del(name, route) {
+			if(!confirm('Anda yakin akan menghapus data '+ name +'?')) return false;
+             $("form#form_delete").attr("action", route);
              $("button#btn-hapus").trigger("click");
 		}
     </script>

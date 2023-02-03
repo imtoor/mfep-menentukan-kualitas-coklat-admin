@@ -11,16 +11,6 @@ use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
 
     use RegistersUsers;
 
@@ -29,6 +19,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
+    
     protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
@@ -64,9 +55,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        // $user = User::all();
+        // return view('menu_userpelanggan.create', compact('user'));
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'phone' => $data['phone'],
+            // 'level' => $data['level'],
             'password' => Hash::make($data['password']),
         ]);
     }
