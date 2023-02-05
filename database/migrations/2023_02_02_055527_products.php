@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('harga');
             $table->enum('kadar_air', ['rendah', 'sedang', 'tinggi']);
             $table->enum('tekstur', ['besar', 'sedang', 'kecil']);
-            $table->enum('aroma', ['harum', 'berbau busuk', 'kecil']);
+            $table->enum('aroma', ['harum', 'tidak berbau', 'busuk']);
             $table->string('satuan');
             $table->timestamps();
         });
