@@ -118,7 +118,7 @@ Menu User Pelanggan
 		<button class="btn btn-danger btn-sm" id='btn-reset' type="submit">
 		<i class="fa-icon fas fa-trash"></i></button>
     </form>
-	<form action="" method="POST" style="display:none">
+	<form action="" method="POST" style="display:none" id="form_delete">
 		@method('DELETE')
 		@csrf
 		<button class="btn btn-danger btn-sm" id='btn-hapus' type="submit">
@@ -155,16 +155,17 @@ Menu User Pelanggan
 	      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
 	    }).buttons().container().appendTo('#data_userpelanggan_wrapper .col-md-6:eq(0)');
 
+		function confirm_del(name, route) {
+			if(!confirm('Anda yakin akan menghapus data '+name+'?')) return false;
+			 $("form#form_delete").attr("action", route);
+			 $("button#btn-hapus").trigger("click");
+		}
+
 		function confirm_resetpass(name, route) {
 			if(!confirm('Reset password '+ name + 'dengan password default ?')) return false;
              $("form#form_reset").attr("action", route);
              $("button#btn-reset").trigger("click");
 		}
 
-		function confirm_del(name, route) {
-			if(!confirm('Anda yakin akan menghapus data '+ name +'?')) return false;
-             $("form#form_delete").attr("action", route);
-             $("button#btn-hapus").trigger("click");
-		}
     </script>
 @endsection
