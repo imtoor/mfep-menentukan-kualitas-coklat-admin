@@ -56,18 +56,6 @@ Menu Produk
                 <form method="POST" action="/menu-produk">
                   @csrf
                       <div class="card-body">
-                      @if ($message = Session::get('sukses'))
-                        <div class="alert alert-success alert-block">
-                        <button type="button" class="close" data-dismiss="alert">×</button>
-                        <strong>{{ $message }}</strong>
-                        </div>
-                      @elseif($message = Session::get('error'))
-                        <div class="alert alert-danger alert-block">
-                        <button type="button" class="close" data-dismiss="alert">×</button>
-                        <strong>{{ $message }}</strong>
-                        </div>
-                      @endif
-                      <div class="card-body">
                         <div class="form-group">
                             <label for="name">Nama Produk</label>
                             <input id="nama" type="text" placeholder="Nama Produk" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama') }}" required autocomplete="nama" autofocus>

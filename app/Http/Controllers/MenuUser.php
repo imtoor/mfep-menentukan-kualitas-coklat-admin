@@ -44,6 +44,11 @@ class MenuUser extends Controller
      */
     public function store(Request $request)
     {
+        if (User::where('email', $request->email)->exists()) 
+        {
+         return redirect('menu-userpelanggan/create')->with('error_email', 'Email telah terdaftar sebelumnya!');
+        }
+
         $user = new User;
         $user->id = $request->id;
         $user->name = $request->name;
