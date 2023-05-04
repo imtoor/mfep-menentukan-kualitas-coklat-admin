@@ -23,22 +23,11 @@ class MenuProdukController extends Controller
         return view('menu_produk.index', ['product' => $product]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('menu_produk.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $validasi = Product::create([
@@ -47,7 +36,6 @@ class MenuProdukController extends Controller
             'kadar_air' => $request->kadar_air,
             'tekstur' => $request->tekstur,
             'aroma' => $request->aroma,
-            'satuan' => $request->satuan,
         ]);
 
         if ($validasi) {
@@ -57,23 +45,11 @@ class MenuProdukController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $produk = Product::find($id);
@@ -88,7 +64,6 @@ class MenuProdukController extends Controller
             'kadar_air' => $request->kadar_air,
             'tekstur' => $request->tekstur,
             'aroma' => $request->aroma,
-            'satuan' => $request->satuan,
         ]);
 
         if ($validasi) {
@@ -98,12 +73,6 @@ class MenuProdukController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $validasi = Product::where('id', $id)->delete();

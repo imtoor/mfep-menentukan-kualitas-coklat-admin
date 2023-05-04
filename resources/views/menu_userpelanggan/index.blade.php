@@ -86,7 +86,7 @@ Menu User Pelanggan
 									<td>{{ $data->phone }}</td>
 									<td>
 									<button 
-										class="btn btn-sm btn-danger" title="Hapus" 
+										class="btn btn-sm btn-danger" title="Hapus"
 										onclick="confirm_del('{{ $data->name }} ', '{{ route('menu-userpelanggan.destroy', $data->id) }}')">
 										<i class="fa-icon fas fa-trash"></i>
 									</button>

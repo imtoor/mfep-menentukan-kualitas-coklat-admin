@@ -69,7 +69,6 @@ Dashboard
 								<th>Kadar Air</th>
 								<th>Tekstur</th>
 								<th>Aroma</th>
-								<th>Satuan</th>
 								<th>Aksi</th>
 							</tr>
 							</thead>
@@ -83,7 +82,6 @@ Dashboard
 									<td>{{ $data->kadar_air }}</td>
 									<td>{{ $data->tekstur }}</td>
 									<td>{{ $data->aroma }}</td>
-									<td>{{ $data->satuan }}</td>
 									<td>
 										<a href="/menu-produk/{{ $data->id}}/edit" class="btn btn-sm btn-warning"><i class="fa-icon fas fa-pen"></i></a>
 										<button

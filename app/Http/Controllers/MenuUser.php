@@ -10,11 +10,8 @@ use Illuminate\Support\Facades\Hash;
 class MenuUser extends Controller
 
 {
-
     public function __construct() {
-
         $this->middleware('auth');
-
     }
 
     public function index()
@@ -25,23 +22,12 @@ class MenuUser extends Controller
         return view('menu_userpelanggan.index', ['user' => $user]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $user = User::all();
         return view('menu_userpelanggan.create', compact('user'));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
         if (User::where('email', $request->email)->exists()) 

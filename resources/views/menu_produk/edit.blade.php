@@ -94,9 +94,9 @@ Menu Edit Produk
                             <label for="tekstur">Tekstur</label>
                             <select class="form-control" id="tekstur" name="tekstur">
                                 <option {{ $produk->tekstur == "" ? 'selected' : '' }}>-</option>
-                                <option value="besar" {{ $produk->tekstur == "besar" ? 'selected' : '' }}>Besar</option>
+                                <option value="lembek" {{ $produk->tekstur == "lembek" ? 'selected' : '' }}>Lembek</option>
                                 <option value="sedang" {{ $produk->tekstur == "sedang" ? 'selected' : '' }}>Sedang</option>
-                                <option value="kecil" {{ $produk->tekstur == "kecil" ? 'selected' : '' }}>Kecil</option>
+                                <option value="keras" {{ $produk->tekstur == "keras" ? 'selected' : '' }}>Keras</option>
                             </select>
                             @error('tekstur')
                                 <span class="invalid-feedback" role="alert">
@@ -113,15 +113,6 @@ Menu Edit Produk
                                 <option value="busuk" {{ $produk->aroma == "busuk" ? 'selected' : '' }}>Busuk</option>
                             </select>
                             @error('aroma')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                          <label for="satuan">Satuan</label>
-                          <input id="satuan" value="{{ $produk->satuan }}" type="text" placeholder="Satuan" class="form-control @error('satuan') is-invalid @enderror" name="satuan" value="{{ old('satuan') }}" required autocomplete="satuan">
-                            @error('satuan')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

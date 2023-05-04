@@ -91,11 +91,11 @@ Menu Produk
                         </div>
                         <div class="form-group">
                           <label for="tekstur">Tekstur</label>
-                          <select class="form-control @error('tekstur') is-invalid @enderror" name="tekstur" value="{{ old('tekstur') }}" required autocomplete="tekstur" id="satuan" name="satuan">
+                          <select class="form-control @error('tekstur') is-invalid @enderror" name="tekstur" value="{{ old('tekstur') }}" required autocomplete="tekstur" id="tekstur" name="tekstur">
                             <option>-</option>
-                            <option value="besar">Besar</option>
+                            <option value="lembek">Lembek</option>
                             <option value="sedang">Sedang</option>
-                            <option value="kecil">Kecil</option>
+                            <option value="keras">Keras</option>
                           </select>
                           <!-- <input id="tekstur" type="text" placeholder="tekstur" class="form-control @error('tekstur') is-invalid @enderror" name="tekstur" value="{{ old('tekstur') }}" required autocomplete="tekstur"> -->
                             @error('tekstur')
@@ -114,15 +114,6 @@ Menu Produk
                           </select>
                           <!-- <input id="aroma" type="text" placeholder="aroma" class="form-control @error('aroma') is-invalid @enderror" name="aroma" value="{{ old('aroma') }}" required autocomplete="aroma"> -->
                             @error('aroma')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
-                        <div class="form-group">
-                          <label for="satuan">Satuan</label>
-                          <input id="satuan" type="number" placeholder="satuan" class="form-control @error('satuan') is-invalid @enderror" name="satuan" value="{{ old('satuan') }}" required autocomplete="satuan">
-                            @error('satuan')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
