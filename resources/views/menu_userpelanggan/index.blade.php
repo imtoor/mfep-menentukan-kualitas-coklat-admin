@@ -70,9 +70,10 @@ Menu User Pelanggan
 							<thead>
 							<tr>
 								<th>No.</th>
-								<th>Name</th>
+								<th>Nama Lengkap</th>
 								<th>Email</th>
 								<th>Phone</th>
+								<th>Address</th>
 								<th>Aksi</th>
 							</tr>
 							</thead>
@@ -84,6 +85,7 @@ Menu User Pelanggan
 									<td>{{ $data->name }}</td> 
 									<td>{{ $data->email }}</td> 
 									<td>{{ $data->phone }}</td>
+									<td>{{ $data->address }}</td>
 									<td>
 									<button 
 										class="btn btn-sm btn-danger" title="Hapus"

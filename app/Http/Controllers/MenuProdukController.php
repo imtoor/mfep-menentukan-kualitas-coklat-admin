@@ -14,10 +14,7 @@ class MenuProdukController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        // $product = Product::with('products')->get();  
-        // return view('menu_produk.index', compact('products'));    
-        
+    {   
         $product = DB::table('products')->get();
 
         return view('menu_produk.index', ['product' => $product]);
@@ -36,6 +33,7 @@ class MenuProdukController extends Controller
             'kadar_air' => $request->kadar_air,
             'tekstur' => $request->tekstur,
             'aroma' => $request->aroma,
+            'satuan' => "kg",
         ]);
 
         if ($validasi) {

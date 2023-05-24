@@ -92,9 +92,18 @@ Menu User Pelanggan
                             @enderror
                         </div>
                         <div class="form-group">
-                          <label for="level">Phone</label>
+                          <label for="phone">Phone</label>
                           <input id="phone" type="number" placeholder="Phone" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone">
                             @error('phone')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                          <label for="address">Alamat</label>
+                          <input id="address" type="text" placeholder="Alamat" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address">
+                            @error('address')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

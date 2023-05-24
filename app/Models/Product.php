@@ -15,5 +15,6 @@ class Product extends Model
         'kadar_air',
         'tekstur',
         'aroma',
+        'satuan',
         ];
 }

@@ -85,6 +85,15 @@ Menu User Pelanggan
                                 </span>
                             @enderror
                         </div>
+                        <div class="form-group">
+                          <label for="address">Alamat</label>
+                          <input id="address" value="{{ $user->address }}" type="text" placeholder="Alamat" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address">
+                            @error('address')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                   <!-- /.card-body -->
                       <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Submit</button>

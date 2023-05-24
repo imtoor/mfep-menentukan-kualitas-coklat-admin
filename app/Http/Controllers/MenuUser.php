@@ -40,6 +40,7 @@ class MenuUser extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
+        $user->address = $request->address;
         $user->password = Hash::make('12345');
         $level = 'pelanggan';
         $user->level = $level;
@@ -51,42 +52,24 @@ class MenuUser extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $user = User::find($id);
         return view('menu_userpelanggan.edit', ["user" => $user]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $validasi = User::where('id', $id)->update([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
+            'address' => $request->address,
             'password' => Hash::make($request->password),
         ]);
 
