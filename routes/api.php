@@ -10,3 +10,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('/get-products', App\Http\Controllers\Api\ProdukController::class);
 
 Route::apiResource('/get-users', App\Http\Controllers\Api\UserController::class);
+
+Route::post('update-status', [App\Http\Controllers\Api\OrderController::class, 'update_status']);
+Route::apiResource('orders', App\Http\Controllers\Api\OrderController::class);
