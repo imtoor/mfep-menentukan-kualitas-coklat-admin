@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Product;
+use App\Models\Order;
+use App\Models\User;
+
 class HomeController extends Controller
 {
     /**
@@ -23,7 +27,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard.index');
+        $data = [
+            'products' => Product::count(),
+            'pelanggan' => User::where('level', 'pelanggan')->count(),
+            'pemasukan' => Order::where('status', 3)->sum('total')
+        ];
+        return view('dashboard.index', compact('data'));
         // return view('home');
     }
 }
