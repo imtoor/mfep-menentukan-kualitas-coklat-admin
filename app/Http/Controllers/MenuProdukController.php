@@ -32,14 +32,13 @@ class MenuProdukController extends Controller
             'harga' => $request->harga,
             'kadar_air' => $request->kadar_air,
             'tekstur' => $request->tekstur,
-            'aroma' => $request->aroma,
-            'satuan' => "kg",
+            'aroma' => $request->aroma
         ]);
 
         if ($validasi) {
-            return redirect('menu-produk')->with('sukses', 'Anggota berhasil ditambahkan!');
+            return redirect('menu-produk')->with('sukses', 'Produk berhasil ditambahkan!');
         } else {
-            return redirect('menu-produk')->with('error', 'Anggota gagal ditambahkan!');
+            return redirect('menu-produk')->with('error', 'Produk gagal ditambahkan!');
         }
     }
 
