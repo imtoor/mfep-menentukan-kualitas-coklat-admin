@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Order;
 
 class MenuLaporanController extends Controller
 {
@@ -13,7 +14,8 @@ class MenuLaporanController extends Controller
      */
     public function index()
     {
-        return view('menu_laporan.index');
+        $transactions = Order::where('status', 3)->get();
+        return view('menu_laporan.index', compact('transactions'));
     }
 
     /**
