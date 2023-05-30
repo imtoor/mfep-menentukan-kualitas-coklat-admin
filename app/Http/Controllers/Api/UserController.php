@@ -31,10 +31,10 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
-        $user->address = $request->address;
-        $user->password = Hash::make('12345');
-        $level = 'pelanggan';
-        $user->level = $level;
+        $user->password = $request->password;
+        if($request->password != $request->confirm_password) {
+            return new ProductResource(false, 'Gagal Daftar Password Tidak Sama', []);
+        }
         
         if ($user->save()) {
             return new ProductResource(true, 'Sukses Daftar', []);
