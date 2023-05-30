@@ -28,7 +28,6 @@ class UserController extends Controller
 
     public function daftar_user(Request $request) {
         $user = new User;
-        $user->id = $request->id;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;

@@ -55,7 +55,6 @@
                                     </p>
                                 </a>
                             </li>
-                            
                             <li class="nav-item">
                                 <a id="menu_userpelanggan" 
                                     href="{{ url('/menu-userpelanggan') }}"
@@ -83,12 +82,12 @@
                                 <p>Transaksi</p>
                                 </a>
                             </li>
+
                             <li class="nav-item">
                                 <a id="menu_laporan" 
                                     href="{{ url('/menu-laporan') }}"
                                     class="nav-link"
                                 >
-                                <!-- <i class="nav-icon fas fa-money-check"></i> -->
                                 <i class="nav-icon fas fa-money-check"></i>
                                 <p>Laporan</p>
                                 </a>
