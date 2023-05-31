@@ -11,7 +11,6 @@ use App\Http\Resources\ProductResource;
 class UserController extends Controller
 {
     public function index() {
-
         $users = User::latest()->get();
         return new ProductResource(true, 'List Data User', $users);
     }
@@ -22,7 +21,7 @@ class UserController extends Controller
         if (Hash::check($request->password, $user->password)) {
             return new ProductResource(true, 'Login Berhasil', $user);
         } else {
-            return new ProductResource(false, 'Login Gagal', null);
+            return new ProductResource(false, 'Email atau Password Salah', null);
         }
     }
 

@@ -15,7 +15,7 @@ class MenuTransaksiController extends Controller
      */
     public function index()
     {
-        $orders = Order::get();
+        $orders = Order::with('user')->orderBy('status', 'asc')->get();
         return view('menu_transaksi.index', compact('orders'));
     }
 

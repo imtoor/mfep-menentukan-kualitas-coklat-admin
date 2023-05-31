@@ -107,7 +107,7 @@
                                     <tr class="{{ $bg }}">
                                         <td><?= $no++ ?></td>
                                         <td>{{ $data->created_at }}</td>
-                                        <td>{{ 'Nama' }}</td>
+                                        <td>{{ ucwords($data->user != null ? $data->user->name:'NULL') }}</td>
                                         <td>{{ $data->address }}</td>
                                         <td>{{ $data->phone }}</td>
                                         <td>{{ strtoupper($data->payment_method) }}</td>

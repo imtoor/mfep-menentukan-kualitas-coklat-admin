@@ -19,6 +19,7 @@ class OrderController extends Controller
     public function store(Request $request) {
 
         $order = new Order;
+        $order->users_id = $request->forms['users_id'];
         $order->address = $request->forms['address'];
         $order->email = $request->forms['email'];
         $order->phone = $request->forms['phone'];
