@@ -19,7 +19,7 @@ class UserController extends Controller
     public function login_user(Request $request) {
         $user = User::where('email', $request->email)->first();
 
-        if (Hash::check($request->password, $user->password) != null) {
+        if (Hash::check($request->password, $user->password)) {
             return new ProductResource(true, 'Login Berhasil', $user);
         } else {
             return new ProductResource(false, 'Login Gagal', null);
@@ -27,15 +27,18 @@ class UserController extends Controller
     }
 
     public function daftar_user(Request $request) {
+        
+        if($request->password != $request->confirm_password) {
+            return new ProductResource(false, 'Gagal Daftar Password Tidak Sama', []);
+        }
+
         $user = new User;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->phone = $request->phone;
-        $user->password = $request->password;
-        if($request->password != $request->confirm_password) {
-            return new ProductResource(false, 'Gagal Daftar Password Tidak Sama', []);
-        }
-        
+        $user->password = Hash::make($request->password);
+        $user->level = 'pelanggan';
+
         if ($user->save()) {
             return new ProductResource(true, 'Sukses Daftar', []);
         } else {
