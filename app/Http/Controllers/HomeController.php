@@ -27,12 +27,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data = [
-            'products' => Product::count(),
-            'pelanggan' => User::where('level', 'pelanggan')->count(),
-            'pemasukan' => Order::where('status', 3)->sum('total')
-        ];
+        if (auth()->user()->level == "admin") {
+            $data = [
+                'products' => Product::count(),
+                'pelanggan' => User::where('level', 'pelanggan')->count(),
+                'pemasukan' => Order::where('status', 3)->sum('total')
+            ];
+        } else {
+            $data = [
+                'order' => Order::where('users_id', auth()->user()->id)->orderBy('id', 'desc')->first()
+            ];        
+        }
+
         return view('dashboard.index', compact('data'));
-        // return view('home');
     }
 }

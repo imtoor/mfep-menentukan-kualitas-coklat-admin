@@ -18,7 +18,7 @@
                         class="brand-image img-circle elevation-3"
                         style="opacity: 0.8"
                     />
-                    <span class="brand-text font-weight-light">SHOP | ADMIN</span>
+                    <span class="brand-text font-weight-light">SHOP | {{ auth()->user()->level == "admin" ? "ADMIN":"PELANGGAN" }}</span>
                 </a>
 
                 <!-- Sidebar -->
@@ -55,6 +55,7 @@
                                     </p>
                                 </a>
                             </li>
+                            @if(auth()->user()->level == "admin")
                             <li class="nav-item">
                                 <a id="menu_userpelanggan" 
                                     href="{{ url('/menu-userpelanggan') }}"
@@ -73,6 +74,7 @@
                                 <p>Produk</p>
                                 </a>
                             </li>
+                            @endif
                             <li class="nav-item">
                                 <a id="menu_transaksi" 
                                     href="{{ url('/menu-transaksi') }}"

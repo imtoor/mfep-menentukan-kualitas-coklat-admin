@@ -34,60 +34,95 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <!-- Small boxes (Stat box) -->
-            <div class="row">
-                <div class="col-lg-4 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-info">
-                        <div class="inner">
-                            <h3>{{ $data['products'] }}</h3>
-                            <p>Jumlah Produk</p>
+            @if(auth()->user()->level == "admin")
+                <div class="row">
+                    <div class="col-lg-4 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                <h3>{{ $data['products'] }}</h3>
+                                <p>Jumlah Produk</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-bag"></i>
+                            </div>
+                            <a href="{{ route('menu-produk.index') }}" class="small-box-footer"
+                                >Details
+                                <i class="fas fa-arrow-circle-right"></i
+                            ></a>
                         </div>
-                        <div class="icon">
-                            <i class="ion ion-bag"></i>
+                    </div>
+
+                    <div class="col-lg-4 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-warning">
+                            <div class="inner">
+                                <h3>{{ $data['pelanggan'] }}</h3>
+                                <p>Jumlah Pelanggan</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-person"></i>
+                            </div>
+                            <a href="{{ route('menu-userpelanggan.index') }}" class="small-box-footer"
+                                >Details
+                                <i class="fas fa-arrow-circle-right"></i
+                            ></a>
                         </div>
-                        <a href="{{ route('menu-produk.index') }}" class="small-box-footer"
-                            >Details
-                            <i class="fas fa-arrow-circle-right"></i
-                        ></a>
+                    </div>
+
+                    <div class="col-lg-4 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-success">
+                            <div class="inner">
+                                <h3>Rp{{ number_format($data['pemasukan']) }}</h3>
+                                <p>Total Pemasukan</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-cash"></i>
+                            </div>
+                            <a href="#" class="small-box-footer"
+                                >Details
+                                <i class="fas fa-arrow-circle-right"></i
+                            ></a>
+                        </div>
                     </div>
                 </div>
+            @else
+                <div class="row">
+                    <div class="col-lg-4 col-6">
+                        <!-- small box -->
+                        <div class="small-box bg-info">
+                            <div class="inner">
+                                @if($data['order'] == null)
+                                    BELUM ADA PESANAN
+                                @else
+                                    Status Pesanan:<br><u>
+                                    @if($data['order']->status == "0")
+                                        MENUNGGU PEMBAYARAN
+                                    @elseif($data['order']->status == "1")
+                                        MENUNGGU PENGIRIMAN
+                                    @elseif($data['order']->status == "2")
+                                        PESANAN DALAM PERJALANAN
+                                    @elseif($data['order']->status == "3")
+                                        PESANAN DITERIMA
+                                    @endif
+                                    </u>
+                                @endif
+                                <p>
+                                </p>
 
-                <div class="col-lg-4 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-warning">
-                        <div class="inner">
-                            <h3>{{ $data['pelanggan'] }}</h3>
-                            <p>Jumlah Pelanggan</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-bag"></i>
+                            </div>
+                            <a href="{{ route('menu-transaksi.index') }}" class="small-box-footer"
+                                >Details
+                                <i class="fas fa-arrow-circle-right"></i
+                            ></a>
                         </div>
-                        <div class="icon">
-                            <i class="ion ion-person"></i>
-                        </div>
-                        <a href="{{ route('menu-userpelanggan.index') }}" class="small-box-footer"
-                            >Details
-                            <i class="fas fa-arrow-circle-right"></i
-                        ></a>
                     </div>
-                </div>
-
-                <div class="col-lg-4 col-6">
-                    <!-- small box -->
-                    <div class="small-box bg-success">
-                        <div class="inner">
-                            <h3>Rp{{ number_format($data['pemasukan']) }}</h3>
-                            <p>Total Pemasukan</p>
-                        </div>
-                        <div class="icon">
-                            <i class="ion ion-cash"></i>
-                        </div>
-                        <a href="#" class="small-box-footer"
-                            >Details
-                            <i class="fas fa-arrow-circle-right"></i
-                        ></a>
-                    </div>
-                </div>
-
-            </div>
+                </div>                
+            @endif
             <!-- /.row -->
             <!-- Main row -->
             <div class="row">
