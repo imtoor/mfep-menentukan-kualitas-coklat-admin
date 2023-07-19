@@ -8,20 +8,24 @@ use App\Http\Controllers\MenuProdukController;
 use App\Http\Controllers\MenuLaporanController;
 use App\Http\Controllers\MenuTransaksiController;
  
+use App\Http\Middleware\Authenticate;
+
 Auth::routes();
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::middleware([Authenticate::class])->group(function() {
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+	Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::resource('/menu-userpelanggan', MenuUser::class);
+	Route::resource('/menu-userpelanggan', MenuUser::class);
 
-Route::put('/password-reset/{id}', [MenuUser::class, 'reset_password'] )->name('password-reset');
+	Route::put('/password-reset/{id}', [MenuUser::class, 'reset_password'] )->name('password-reset');
 
-Route::resource('/password', PasswordController::class);
+	Route::resource('/password', PasswordController::class);
 
-Route::resource('/menu-produk', MenuProdukController::class);
+	Route::resource('/menu-produk', MenuProdukController::class);
 
-Route::resource('/menu-transaksi', MenuTransaksiController::class); 
+	Route::resource('/menu-transaksi', MenuTransaksiController::class); 
 
-Route::resource('/menu-laporan', MenuLaporanController::class);
+	Route::resource('/menu-laporan', MenuLaporanController::class);
+
+});
