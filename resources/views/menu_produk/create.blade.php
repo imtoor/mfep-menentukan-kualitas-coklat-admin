@@ -1,14 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-Menu Produk
-@endsection
-
-@section('myCss')
-  <!-- DataTables -->
-  <link rel="stylesheet" href="{{ asset('template/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
-  <link rel="stylesheet" href="{{ asset('template/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
-  <link rel="stylesheet" href="{{ asset('template/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
+  Menu Produk
 @endsection
 
 @section('content')
@@ -53,9 +46,19 @@ Menu Produk
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form method="POST" action="/menu-produk">
+                <form method="POST" action="/menu-produk" enctype="multipart/form-data">
                   @csrf
                       <div class="card-body">
+
+                        <div class="form-group">
+                            <label for="gambar">Gambar</label>
+                            <input id="gambar" type="file" placeholder="Gambar" class="form-control @error('gambar') is-invalid @enderror" name="gambar" value="{{ old('gambar') }}"  autofocus>
+                            @error('gambar')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror                          
+                        </div>
                         <div class="form-group">
                             <label for="name">Nama Produk</label>
                             <input id="nama" type="text" placeholder="Nama Produk" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama') }}" required autocomplete="nama" autofocus>
@@ -69,6 +72,15 @@ Menu Produk
                             <label for="harga">Harga</label>
                             <input id="harga" type="number" placeholder="harga" class="form-control @error('harga') is-invalid @enderror" name="harga" value="{{ old('harga') }}" required autocomplete="harga">
                             @error('harga')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="stok">Stok <i>(Kg)</i></label>
+                            <input id="stok" type="number" placeholder="stok (Kg)" class="form-control @error('stok') is-invalid @enderror" name="stok" value="{{ old('stok') }}" required autocomplete="stok">
+                            @error('stok')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
@@ -138,22 +150,6 @@ Menu Produk
     <!-- /.content -->
   </div>
 
-@endsection
-
-@section('myLib')
-	<!-- DataTables  & Plugins -->
-	<script src="{{ asset('template/adminlte/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-	<script src="{{ asset('template/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
-	<script src="{{ asset('template/adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
-	<script src="{{ asset('template/adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
-	<script src="{{ asset('template/adminlte/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
-	<script src="{{ asset('template/adminlte/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
-	<script src="{{ asset('template/adminlte/plugins/jszip/jszip.min.js') }}"></script>
-	<script src="{{ asset('template/adminlte/plugins/pdfmake/pdfmake.min.js') }}"></script>
-	<script src="{{ asset('template/adminlte/plugins/pdfmake/vfs_fonts.js') }}"></script>
-	<script src="{{ asset('template/adminlte/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
-	<script src="{{ asset('template/adminlte/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
-	<script src="{{ asset('template/adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
 @endsection
 
 @section('myJs')

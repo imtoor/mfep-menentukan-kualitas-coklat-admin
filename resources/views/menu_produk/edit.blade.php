@@ -49,15 +49,24 @@ Menu Edit Produk
             <!-- general form elements -->
               <div class="card card-primary">
                 <div class="card-header">
-                  <h3 class="card-title">Tambah Data Produk</h3>
+                  <h3 class="card-title">Edit</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form method="POST" action="/menu-produk/{{ $produk->id }}">
+                <form method="POST" action="/menu-produk/{{ $produk->id }}" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
                     <div class="card-body">
                       <div class="card-body">
+                        <div class="form-group">
+                            <label for="gambar">Gambar <i>(Pilih untuk mengganti/menambahkan)</i></label>
+                            <input id="gambar" type="file" placeholder="Gambar" class="form-control @error('gambar') is-invalid @enderror" name="gambar" value="{{ old('gambar') }}"  autofocus>
+                            @error('gambar')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror                          
+                        </div>                        
                         <div class="form-group">
                             <label for="nama">Nama Produk</label>
                             <input id="nama" value="{{ $produk->nama }}" type="text" placeholder="Nama Lengkap" class="form-control @error('nama') is-invalid @enderror" name="nama" value="{{ old('nama') }}" required autocomplete="nama" autofocus>
@@ -71,6 +80,15 @@ Menu Edit Produk
                             <label for="harga">Harga</label>
                             <input id="harga" type="number" value="{{ $produk->harga }}" placeholder="Harga" class="form-control @error('harga') is-invalid @enderror" name="harga" value="{{ old('harga') }}" required autocomplete="harga">
                             @error('harga')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="stok">Stok</label>
+                            <input id="stok" type="number" value="{{ $produk->stok }}" placeholder="stok" class="form-control @error('stok') is-invalid @enderror" name="stok" value="{{ old('stok') }}" required autocomplete="stok">
+                            @error('stok')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>

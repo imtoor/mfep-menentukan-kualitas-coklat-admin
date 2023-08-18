@@ -64,8 +64,10 @@ Dashboard
 							<thead>
 							<tr>
 								<th>No.</th>
+								<th>Gambar</th>
 								<th>Nama</th>
 								<th>Harga</th>
+								<th>Stok</th>
 								<th>Kadar Air</th>
 								<th>Tekstur</th>
 								<th>Aroma</th>
@@ -77,8 +79,10 @@ Dashboard
 								@foreach($product as $data)
 								<tr>
 									<td><?= $no++ ?></td>
+									<td><img loading='lazy' width="150" src="<?= asset('img/products/'.$data->gambar) ?>" alt="<?= $data->nama ?>"></td>
 									<td>{{ $data->nama }}</td>
-									<td>{{ $data->harga }}</td>
+									<td>Rp{{ number_format($data->harga) }}</td>
+									<td>{{ $data->stok }}</td>
 									<td>{{ $data->kadar_air }}</td>
 									<td>{{ $data->tekstur }}</td>
 									<td>{{ $data->aroma }}</td>
