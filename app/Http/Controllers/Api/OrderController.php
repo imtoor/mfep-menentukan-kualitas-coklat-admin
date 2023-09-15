@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Product;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Http\Resources\OrderResource;
@@ -37,6 +38,10 @@ class OrderController extends Controller
 
             $orderItem = [];
             for ($i=0; $i < count($request->item); $i++) { 
+
+                $product = Product::find($request->item[$i]['id']);
+                Product::where('id', $request->item[$i]['id'])->update(['stok' => ($product->stok - $request->item[$i]['qty'])]);
+
                 $orderItem[] = [
                     'order_id' => $order->id,
                     'products_id' => $request->item[$i]['id'],
